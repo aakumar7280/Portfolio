@@ -93,7 +93,7 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: url('Photos/Concert/Concert1.JPG') center/cover no-repeat;
+      background: url('Photos/Corporate%20Events/DSC06752.jpg') center/cover no-repeat;
       transform: scale(1.05);
       animation: heroReveal 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       transition: opacity 0.8s ease;
@@ -206,6 +206,91 @@
       border-bottom-color: var(--accent);
     }
 
+    .other-niches-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .other-niches-head .section-label {
+      margin-bottom: 0;
+    }
+    .niche-back-btn {
+      background: transparent;
+      border: 1px solid rgba(200,170,126,0.4);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.7rem 1.1rem;
+      cursor: none;
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+    .niche-back-btn:hover {
+      background: rgba(200,170,126,0.16);
+      border-color: rgba(200,170,126,0.75);
+      color: var(--accent);
+    }
+
+    .event-showcase {
+      margin-bottom: 3rem;
+    }
+    .event-showcase-media {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: none;
+    }
+    .event-showcase-media img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 7;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.82) saturate(0.92);
+      transition: opacity 0.6s ease, transform 0.8s ease;
+    }
+    .event-showcase-media:hover img {
+      transform: scale(1.02);
+    }
+    .event-showcase-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 1.5rem 2rem;
+      background: linear-gradient(to top, rgba(12,12,12,0.78), rgba(12,12,12,0.12));
+    }
+    .event-showcase-overlay h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+      font-weight: 300;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .event-showcase-overlay span {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .event-showcase-meta-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.45rem;
+    }
+    .event-showcase-hint {
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(237,232,224,0.75);
+    }
+
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -216,6 +301,16 @@
       position: relative;
       background: var(--surface);
       border: 1px solid var(--border);
+    }
+    .gallery-item.niche-preview {
+      cursor: none;
+    }
+    .gallery-item.niche-preview .gallery-item-overlay {
+      background: rgba(12,12,12,0.2);
+    }
+    .gallery-item.niche-preview .gallery-item-meta {
+      opacity: 1;
+      transform: translateY(0);
     }
     .gallery-item.all-preview .gallery-item-overlay {
       background: rgba(12,12,12,0.22);
@@ -543,16 +638,27 @@
         <div class="section-label">Selected Work</div>
         <h2 class="gallery-title">The <em>Portfolio</em></h2>
       </div>
-      <ul class="gallery-filter">
-        <li class="active" data-filter="All">All</li>
-        <li data-filter="Street">Street</li>
-        <li data-filter="Landscape">Landscape</li>
-        <li data-filter="Concert">Concert</li>
-        <li data-filter="Cars">Cars</li>
-        <li data-filter="Abstract">Abstract</li>
-      </ul>
     </div>
 
+    <div class="event-showcase">
+      <div class="section-label">Corporate Events</div>
+      <div id="eventShowcaseMedia" class="event-showcase-media" role="button" tabindex="0" aria-label="Open all corporate event photos" hidden>
+        <img id="eventShowcaseImage" src="" alt="Corporate event highlight" loading="lazy" />
+        <div class="event-showcase-overlay">
+          <h3>Corporate Event Highlights</h3>
+          <div class="event-showcase-meta-right">
+            <span id="eventShowcaseCounter">01 / 01</span>
+            <span class="event-showcase-hint">Click to view all</span>
+          </div>
+        </div>
+      </div>
+      <p id="eventShowcaseEmpty" class="gallery-empty" hidden>Add your corporate event images to Photos/Corporate Events to enable this slideshow.</p>
+    </div>
+
+    <div class="other-niches-head">
+      <div id="otherNichesTitle" class="section-label">Other Niches</div>
+      <button id="nicheBackBtn" class="niche-back-btn" type="button" hidden>Back to all niches</button>
+    </div>
     <div id="galleryGrid" class="gallery-grid"></div>
   </section>
 
@@ -602,7 +708,7 @@
       <div class="service-card">
         <div class="service-number">02</div>
         <h3>Event Coverage</h3>
-        <p>Candid, documentary-style coverage for celebrations, community events, and professional gatherings across Toronto.</p>
+        <p>Professional photography for corporate events, conferences, launch events, and team celebrations across Toronto.</p>
       </div>
       <div class="service-card">
         <div class="service-number">03</div>
@@ -642,7 +748,7 @@
             <select>
               <option value="">Select a service…</option>
               <option>Portrait Session</option>
-              <option>Event Coverage</option>
+              <option>Corporate Event Coverage</option>
               <option>Street Photography</option>
               <option>Landscape Session</option>
               <option>Other</option>
@@ -666,9 +772,9 @@
   <footer>
     <div class="footer-logo">Aarush Kumar</div>
     <ul class="social-links">
-      <li><a href="#">Instagram</a></li>
-      <li><a href="#">LinkedIn</a></li>
-      <li><a href="#">YouTube</a></li>
+      <li><a href="https://www.instagram.com/aarush.jpeg/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+      <li><a href="https://www.linkedin.com/in/aarush-kumar-a7a330207/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/@AarushK" target="_blank" rel="noopener noreferrer">YouTube</a></li>
     </ul>
     <p class="footer-copy">© 2026 Aarush Kumar. All rights reserved.</p>
   </footer>
@@ -694,7 +800,7 @@
     lerpCursor();
 
     function bindHoverTargets(scope = document) {
-      scope.querySelectorAll('a, button, .gallery-item, .gallery-filter li, .service-card').forEach(el => {
+      scope.querySelectorAll('a, button, .gallery-item, .gallery-filter li, .service-card, .event-showcase-media').forEach(el => {
         if (el.dataset.cursorBound === '1') return;
         el.dataset.cursorBound = '1';
         el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
@@ -740,6 +846,16 @@
         '20220807001023_IMG_9424-01.jpeg',
         '20220807005025_IMG_9528-01.jpeg'
       ],
+      Event: [
+        'DSC06752.jpg',
+        'IMG_5323.jpg',
+        'IMG_5434.jpg',
+        'IMG_5856.jpg',
+        'IMG_6445.jpg',
+        'IMG_6494.jpg',
+        'IMG_6512.jpg',
+        'IMG_6659.jpg'
+      ],
       Concert: [
         '1000043750.jpg',
         '1000043787.jpg',
@@ -776,30 +892,30 @@
         'PXL_20250402_164515499.jpg'
       ]
     };
-    const galleryCategories = ['Street', 'Landscape', 'Concert', 'Cars', 'Abstract'];
-    const allPreviewIndices = Object.fromEntries(galleryCategories.map(category => [category, 0]));
-    let currentFilter = 'All';
-    let allPreviewIntervalId = null;
-
-    Object.entries(galleryImages).forEach(([category, files]) => {
-      if (files.length) {
-        allPreviewIndices[category] = Math.floor(Math.random() * files.length);
-      }
-    });
+    const staticNicheCategories = ['Street', 'Landscape', 'Concert', 'Cars', 'Abstract'];
+    const galleryFolderMap = {
+      Event: 'Corporate Events'
+    };
 
     function toAssetPath(folder, fileName) {
-      return `Photos/${encodeURIComponent(folder)}/${encodeURIComponent(fileName)}`;
+      const mappedFolder = galleryFolderMap[folder] || folder;
+      return `Photos/${encodeURIComponent(mappedFolder)}/${encodeURIComponent(fileName)}`;
     }
 
     const heroBg = document.querySelector('.hero-bg');
-    const heroConcertFiles = galleryImages.Concert || [];
-    let heroConcertIndex = heroConcertFiles.length ? Math.floor(Math.random() * heroConcertFiles.length) : 0;
-    let heroConcertIntervalId = null;
+    const configuredHeroEventFiles = ['DSC06752.jpg', 'IMG_5434.jpg', 'IMG_6494.jpg', 'IMG_6659.jpg'];
+    let heroEventFiles = configuredHeroEventFiles.filter(fileName => (galleryImages.Event || []).includes(fileName));
+    if (!heroEventFiles.length) {
+      heroEventFiles = (galleryImages.Event || []).slice(0, 4);
+    }
+    let heroEventIndex = 0;
+    let heroEventIntervalId = null;
 
-    function setHeroConcertBackground(index, withFade = false) {
-      if (!heroBg || !heroConcertFiles.length) return;
-      const safeIndex = ((index % heroConcertFiles.length) + heroConcertFiles.length) % heroConcertFiles.length;
-      const nextImage = `url("${toAssetPath('Concert', heroConcertFiles[safeIndex])}")`;
+    function setHeroEventBackground(index, withFade = false) {
+      if (!heroBg || !heroEventFiles.length) return;
+
+      const safeIndex = ((index % heroEventFiles.length) + heroEventFiles.length) % heroEventFiles.length;
+      const nextImage = `url("${toAssetPath('Event', heroEventFiles[safeIndex])}")`;
 
       if (withFade) {
         heroBg.style.opacity = '0.72';
@@ -811,20 +927,21 @@
         heroBg.style.backgroundImage = nextImage;
       }
 
-      heroConcertIndex = safeIndex;
+      heroEventIndex = safeIndex;
     }
 
-    function startHeroConcertRotation() {
-      if (!heroBg || !heroConcertFiles.length) return;
-      setHeroConcertBackground(heroConcertIndex);
-      if (heroConcertFiles.length === 1) return;
+    function startHeroEventRotation() {
+      if (!heroBg || !heroEventFiles.length) return;
 
-      if (heroConcertIntervalId) {
-        clearInterval(heroConcertIntervalId);
+      setHeroEventBackground(0, false);
+      if (heroEventFiles.length <= 1) return;
+
+      if (heroEventIntervalId) {
+        clearInterval(heroEventIntervalId);
       }
 
-      heroConcertIntervalId = setInterval(() => {
-        setHeroConcertBackground(heroConcertIndex + 1, true);
+      heroEventIntervalId = setInterval(() => {
+        setHeroEventBackground(heroEventIndex + 1, true);
       }, 5000);
     }
 
@@ -832,15 +949,9 @@
       return String(index).padStart(2, '0');
     }
 
-    function setActiveFilter(filter) {
-      document.querySelectorAll('.gallery-filter li').forEach(li => {
-        li.classList.toggle('active', (li.dataset.filter || 'All') === filter);
-      });
-    }
-
-    function createGalleryCard(category, fileName, photoIndex, isAllPreview = false) {
+    function createGalleryCard(category, fileName, photoIndex = 0, isPreview = false) {
       const card = document.createElement('article');
-      card.className = `gallery-item${isAllPreview ? ' all-preview' : ''}`;
+      card.className = `gallery-item${isPreview ? ' niche-preview' : ''}`;
       card.dataset.category = category;
       card.dataset.photoIndex = String(photoIndex);
       card.innerHTML = `
@@ -848,110 +959,162 @@
         <div class="gallery-item-overlay">
           <div class="gallery-item-meta">
             <h3>${category} ${formatPhotoNumber(photoIndex + 1)}</h3>
-            <span>${isAllPreview ? `${category} · Click to view all` : category}</span>
+            <span>${isPreview ? `${category} · Click to view all` : category}</span>
           </div>
         </div>
       `;
 
-      if (isAllPreview) {
+      if (isPreview) {
         card.addEventListener('click', () => {
-          setActiveFilter(category);
-          renderGallery(category);
+          renderNicheCategory(category);
         });
       }
 
       return card;
     }
 
-    function stopAllPreviewRotation() {
-      if (!allPreviewIntervalId) return;
-      clearInterval(allPreviewIntervalId);
-      allPreviewIntervalId = null;
+    const otherNichesTitle = document.getElementById('otherNichesTitle');
+    const nicheBackBtn = document.getElementById('nicheBackBtn');
+
+    function updateOtherNichesHeader(category = null) {
+      if (otherNichesTitle) {
+        otherNichesTitle.textContent = category ? `${category} Gallery` : 'Other Niches';
+      }
+      if (nicheBackBtn) {
+        nicheBackBtn.hidden = !category;
+      }
     }
 
-    function updateAllPreviewCards() {
-      if (currentFilter !== 'All') return;
-
-      galleryCategories.forEach(category => {
-        const files = galleryImages[category] || [];
-        if (!files.length) return;
-
-        const nextIndex = (allPreviewIndices[category] + 1) % files.length;
-        allPreviewIndices[category] = nextIndex;
-
-        const card = document.querySelector(`.gallery-item.all-preview[data-category="${category}"]`);
-        if (!card) return;
-
-        const img = card.querySelector('img');
-        const heading = card.querySelector('.gallery-item-meta h3');
-        const fileName = files[nextIndex];
-
-        card.dataset.photoIndex = String(nextIndex);
-        if (img) {
-          img.src = toAssetPath(category, fileName);
-          img.alt = `${category} photo ${nextIndex + 1}`;
-        }
-        if (heading) {
-          heading.textContent = `${category} ${formatPhotoNumber(nextIndex + 1)}`;
-        }
-      });
-    }
-
-    function startAllPreviewRotation() {
-      stopAllPreviewRotation();
-      allPreviewIntervalId = setInterval(updateAllPreviewCards, 2800);
-    }
-
-    function renderGallery(filter = 'All') {
-      currentFilter = filter;
+    function renderOtherNichesOverview() {
       const galleryGrid = document.getElementById('galleryGrid');
       if (!galleryGrid) return;
 
+      updateOtherNichesHeader(null);
       galleryGrid.innerHTML = '';
 
-      if (filter === 'All') {
-        galleryCategories.forEach(category => {
-          const files = galleryImages[category] || [];
-          if (!files.length) return;
+      staticNicheCategories.forEach(category => {
+        const files = galleryImages[category] || [];
+        if (!files.length) return;
 
-          const index = allPreviewIndices[category] % files.length;
-          const fileName = files[index];
-          const card = createGalleryCard(category, fileName, index, true);
-          galleryGrid.appendChild(card);
-          revealOnScroll(card);
-        });
-        startAllPreviewRotation();
-      } else {
-        stopAllPreviewRotation();
-        const files = galleryImages[filter] || [];
-        files.forEach((fileName, index) => {
-          const card = createGalleryCard(filter, fileName, index);
-          galleryGrid.appendChild(card);
-          revealOnScroll(card);
-        });
-      }
+        const card = createGalleryCard(category, files[0], 0, true);
+        galleryGrid.appendChild(card);
+        revealOnScroll(card);
+      });
 
       if (!galleryGrid.children.length) {
-        galleryGrid.innerHTML = '<p class="gallery-empty">No photos in this category yet.</p>';
+        galleryGrid.innerHTML = '<p class="gallery-empty">No photos in the other niches yet.</p>';
       }
 
       bindHoverTargets(galleryGrid);
     }
 
+    function renderNicheCategory(category) {
+      const galleryGrid = document.getElementById('galleryGrid');
+      if (!galleryGrid) return;
+
+      updateOtherNichesHeader(category);
+      galleryGrid.innerHTML = '';
+
+      const files = galleryImages[category] || [];
+      files.forEach((fileName, index) => {
+        const card = createGalleryCard(category, fileName, index, false);
+        galleryGrid.appendChild(card);
+        revealOnScroll(card);
+      });
+
+      if (!galleryGrid.children.length) {
+        galleryGrid.innerHTML = `<p class="gallery-empty">No photos in ${category} yet.</p>`;
+      }
+
+      bindHoverTargets(galleryGrid);
+    }
+
+    const eventShowcaseImage = document.getElementById('eventShowcaseImage');
+    const eventShowcaseCounter = document.getElementById('eventShowcaseCounter');
+    const eventShowcaseMedia = document.getElementById('eventShowcaseMedia');
+    const eventShowcaseEmpty = document.getElementById('eventShowcaseEmpty');
+    const eventImages = galleryImages.Event || [];
+    let eventSlideIndex = 0;
+    let eventSlideIntervalId = null;
+
+    function setEventShowcaseSlide(index, withFade = false) {
+      if (!eventShowcaseImage || !eventImages.length) return;
+
+      const safeIndex = ((index % eventImages.length) + eventImages.length) % eventImages.length;
+      const nextSrc = toAssetPath('Event', eventImages[safeIndex]);
+
+      if (withFade) {
+        eventShowcaseImage.style.opacity = '0.68';
+        setTimeout(() => {
+          eventShowcaseImage.src = nextSrc;
+          eventShowcaseImage.alt = `Corporate event photo ${safeIndex + 1}`;
+          eventShowcaseImage.style.opacity = '1';
+        }, 220);
+      } else {
+        eventShowcaseImage.src = nextSrc;
+        eventShowcaseImage.alt = `Corporate event photo ${safeIndex + 1}`;
+      }
+
+      if (eventShowcaseCounter) {
+        eventShowcaseCounter.textContent = `${formatPhotoNumber(safeIndex + 1)} / ${formatPhotoNumber(eventImages.length)}`;
+      }
+
+      eventSlideIndex = safeIndex;
+    }
+
+    function startEventShowcaseRotation() {
+      if (!eventShowcaseMedia || !eventShowcaseEmpty) return;
+
+      if (!eventImages.length) {
+        eventShowcaseMedia.hidden = true;
+        eventShowcaseEmpty.hidden = false;
+        return;
+      }
+
+      eventShowcaseMedia.hidden = false;
+      eventShowcaseEmpty.hidden = true;
+      setEventShowcaseSlide(0, false);
+
+      if (eventImages.length <= 1) return;
+
+      if (eventSlideIntervalId) {
+        clearInterval(eventSlideIntervalId);
+      }
+
+      eventSlideIntervalId = setInterval(() => {
+        setEventShowcaseSlide(eventSlideIndex + 1, true);
+      }, 5000);
+    }
+
+    function openEventGallery() {
+      if (!eventImages.length) return;
+      renderNicheCategory('Event');
+
+      const galleryGrid = document.getElementById('galleryGrid');
+      if (galleryGrid) {
+        galleryGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
     document.querySelectorAll('.service-card, .about-text, .about-image-wrap').forEach(revealOnScroll);
 
-    // Gallery filter
-    document.querySelectorAll('.gallery-filter li').forEach(li => {
-      li.addEventListener('click', () => {
-        const filter = li.dataset.filter || 'All';
-        setActiveFilter(filter);
-        renderGallery(filter);
-      });
-    });
+    if (nicheBackBtn) {
+      nicheBackBtn.addEventListener('click', renderOtherNichesOverview);
+    }
 
-    setActiveFilter('All');
-    renderGallery('All');
-    startHeroConcertRotation();
+    if (eventShowcaseMedia) {
+      eventShowcaseMedia.addEventListener('click', openEventGallery);
+      eventShowcaseMedia.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openEventGallery();
+        }
+      });
+    }
+
+    renderOtherNichesOverview();
+    startEventShowcaseRotation();
+    startHeroEventRotation();
     bindHoverTargets();
 
     function handleSubmit(e) {
