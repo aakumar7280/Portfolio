@@ -175,6 +175,94 @@
       height: 1px; background: var(--accent); opacity: 0.4;
     }
 
+    /* CLIENT LOGOS */
+    .clients {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2.75rem 0;
+      background: linear-gradient(180deg, #111111 0%, #0f0f0f 100%);
+    }
+    .clients-inner {
+      padding: 0 4rem;
+    }
+    .clients-kicker {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(237,232,224,0.72);
+      margin-bottom: 1.2rem;
+    }
+    .logo-marquee {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .logo-marquee::before,
+    .logo-marquee::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 100px;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .logo-marquee::before {
+      left: 0;
+      background: linear-gradient(to right, #101010, rgba(16,16,16,0));
+    }
+    .logo-marquee::after {
+      right: 0;
+      background: linear-gradient(to left, #101010, rgba(16,16,16,0));
+    }
+    .logo-track {
+      display: flex;
+      flex-wrap: nowrap;
+      width: max-content;
+      align-items: center;
+      animation: scroll 25s linear infinite alternate;
+      will-change: transform;
+    }
+    .logo-marquee:hover .logo-track {
+      animation-play-state: paused;
+    }
+    .logo-set {
+      display: flex;
+      align-items: center;
+      gap: clamp(2rem, 5vw, 4.2rem);
+      padding-right: clamp(2rem, 5vw, 4.2rem);
+      flex-shrink: 0;
+      min-width: 100%;
+      justify-content: space-around;
+    }
+    .logo-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: clamp(120px, 16vw, 210px);
+      height: 62px;
+    }
+    .logo-item img {
+      max-height: 54px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      filter: grayscale(1) brightness(1.7) contrast(1.03);
+      opacity: 0.45;
+      transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+    }
+    .logo-item img:hover {
+      filter: grayscale(0) brightness(1) contrast(1);
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
     /* GALLERY */
     #work { padding-top: 4rem; }
     .gallery-header {
@@ -596,6 +684,29 @@
       transition: color 0.3s;
     }
     .social-links a:hover { color: var(--accent); }
+
+    @media (max-width: 1024px) {
+      .clients-inner { padding: 0 2rem; }
+    }
+
+    @media (max-width: 640px) {
+      .clients { padding: 2.1rem 0; }
+      .clients-inner { padding: 0 1.1rem; }
+      .logo-set {
+        gap: clamp(1.1rem, 4vw, 1.9rem);
+        padding-right: clamp(1.1rem, 4vw, 1.9rem);
+      }
+      .logo-item { height: 52px; min-width: 100px; }
+      .logo-item img { max-height: 44px; }
+      .logo-marquee::before,
+      .logo-marquee::after { width: 56px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo-track {
+        animation-play-state: paused;
+      }
+    }
   </style>
 </head>
 <body>
@@ -628,6 +739,41 @@
     <div class="scroll-hint">
       <span>Scroll</span>
       <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- CLIENT LOGOS MARQUEE -->
+  <section class="clients" aria-label="Client logos">
+    <div class="clients-inner">
+      <p class="clients-kicker">Clients I've worked with</p>
+      <div class="logo-marquee">
+        <div class="logo-track" role="list" aria-label="Client logos scrolling marquee">
+          <div class="logo-set" aria-hidden="false">
+            <div class="logo-item" role="listitem">
+              <img src="Photos/Logos/AUwordmark_Red-1.webp" alt="Auckland University wordmark" loading="lazy" />
+            </div>
+            <div class="logo-item" role="listitem">
+              <img src="Photos/Logos/BBOT%20Logo.png" alt="BBOT logo" loading="lazy" />
+            </div>
+            <div class="logo-item" role="listitem">
+              <img src="Photos/Logos/redefined-logo.png" alt="Redefined logo" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Duplicate set for seamless marquee loop -->
+          <div class="logo-set" aria-hidden="true">
+            <div class="logo-item" role="listitem">
+              <img src="Photos/Logos/AUwordmark_Red-1.webp" alt="" loading="lazy" />
+            </div>
+            <div class="logo-item" role="listitem">
+              <img src="Photos/Logos/BBOT%20Logo.png" alt="" loading="lazy" />
+            </div>
+            <div class="logo-item" role="listitem">
+              <img src="Photos/Logos/redefined-logo.png" alt="" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
