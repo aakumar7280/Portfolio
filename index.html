@@ -197,7 +197,7 @@
       flex-wrap: nowrap;
       width: max-content;
       align-items: center;
-      animation: scroll 25s linear infinite alternate;
+      animation: scroll 18s linear infinite alternate;
       will-change: transform;
     }
     .logo-marquee:hover .logo-track {
@@ -206,8 +206,8 @@
     .logo-set {
       display: flex;
       align-items: center;
-      gap: clamp(2rem, 5vw, 4.2rem);
-      padding-right: clamp(2rem, 5vw, 4.2rem);
+      gap: clamp(0.65rem, 2vw, 1.5rem);
+      padding-right: clamp(0.65rem, 2vw, 1.5rem);
       flex-shrink: 0;
       min-width: 100%;
       justify-content: space-around;
@@ -216,7 +216,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: clamp(120px, 16vw, 210px);
+      min-width: clamp(76px, 11vw, 140px);
       height: 62px;
     }
     .logo-item img {
@@ -232,6 +232,12 @@
       filter: grayscale(0) brightness(1) contrast(1);
       opacity: 1;
       transform: translateY(-1px);
+    }
+    .logo-item img.logo-light-on-dark {
+      filter: brightness(0) invert(1);
+    }
+    .logo-item img.logo-light-on-dark:hover {
+      filter: none;
     }
     @keyframes scroll {
       from { transform: translateX(0); }
@@ -725,10 +731,10 @@
       .clients { padding: 2.1rem 0; }
       .clients-inner { padding: 0 1.1rem; }
       .logo-set {
-        gap: clamp(1.1rem, 4vw, 1.9rem);
-        padding-right: clamp(1.1rem, 4vw, 1.9rem);
+        gap: 0.6rem;
+        padding-right: 0.6rem;
       }
-      .logo-item { height: 52px; min-width: 100px; }
+      .logo-item { height: 52px; min-width: 76px; }
       .logo-item img { max-height: 44px; }
       .logo-marquee::before,
       .logo-marquee::after { width: 56px; }
@@ -802,6 +808,12 @@
             <div class="logo-item" role="listitem">
               <img src="Photos/Logos/1000040388.png" alt="Lovable" loading="lazy" />
             </div>
+            <div class="logo-item" role="listitem">
+              <img class="logo-light-on-dark" src="Photos/Logos/Deloitte-Logo.wine.png" alt="Deloitte" loading="lazy" />
+            </div>
+            <div class="logo-item" role="listitem">
+              <img class="logo-light-on-dark" src="Photos/Logos/ernst-young-ey-logo-svgrepo-com.png" alt="EY" loading="lazy" />
+            </div>
           </div>
 
           <!-- Duplicate set for seamless marquee loop -->
@@ -817,6 +829,12 @@
             </div>
             <div class="logo-item" role="listitem">
               <img src="Photos/Logos/1000040388.png" alt="" loading="lazy" />
+            </div>
+            <div class="logo-item" role="listitem">
+              <img class="logo-light-on-dark" src="Photos/Logos/Deloitte-Logo.wine.png" alt="" loading="lazy" />
+            </div>
+            <div class="logo-item" role="listitem">
+              <img class="logo-light-on-dark" src="Photos/Logos/ernst-young-ey-logo-svgrepo-com.png" alt="" loading="lazy" />
             </div>
           </div>
         </div>
